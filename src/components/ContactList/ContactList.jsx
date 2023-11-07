@@ -1,5 +1,12 @@
 import React from 'react';
-import { PeopleList, Item, Text, Button, TextNote } from './ContactList.styled';
+import {
+  PeopleList,
+  Item,
+  Button,
+  TextNote,
+  TextName,
+  TextNumber,
+} from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
@@ -32,9 +39,8 @@ const ContactList = () => {
       {getFilteredContact().length ? (
         getFilteredContact().map(contact => (
           <Item key={contact.id}>
-            <Text>
-              {contact.name}: {contact.phone}
-            </Text>
+            <TextName>{contact.name}</TextName>
+            <TextNumber>{contact.phone}</TextNumber>
             {loading && currentId === contact.id ? (
               <Button>Deleting...</Button>
             ) : (

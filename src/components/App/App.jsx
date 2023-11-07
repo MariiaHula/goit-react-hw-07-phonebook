@@ -3,7 +3,14 @@ import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import Notification from '../Notification/Notification';
-import { CenteredTextNote, CenteredTextWrapper, Wrapper } from './App.styled';
+import {
+  CenteredTextNote,
+  CenteredTextWrapper,
+  PhoneWrapper,
+  SecondTitle,
+  Title,
+  Wrapper,
+} from './App.styled';
 import {
   selectContacts,
   selectError,
@@ -32,16 +39,18 @@ export const App = () => {
         </CenteredTextWrapper>
       ) : (
         <Wrapper>
-          <h1>Phonebook</h1>
-          <ContactForm />
-          <h2>Contacts List</h2>
-          <Filter />
-          {loading && <Dna />}
-          {contacts.length ? (
-            <ContactList />
-          ) : (
-            <Notification message="Your contact list is empty" />
-          )}
+          <PhoneWrapper>
+            <Title>Phonebook</Title>
+            <ContactForm />
+            <SecondTitle>Contacts List</SecondTitle>
+            <Filter />
+            {loading && <Dna />}
+            {contacts.length ? (
+              <ContactList />
+            ) : (
+              <Notification message="Your contact list is empty" />
+            )}
+          </PhoneWrapper>
         </Wrapper>
       )}
     </>

@@ -7,28 +7,45 @@ export const PeopleList = styled.ul`
 
 export const Item = styled.li`
   display: flex;
+  max-width: 630px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  text-align: center;
+  padding: 10px 20px;
+  margin: 10px 0;
   border: 1px solid #ccc;
-  margin: 5px 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;
 
-export const Text = styled.p`
+export const TextName = styled.p`
+  font-weight: 500;
+  text-align: start;
+  width: 250px;
+  font-size: 16px;
+  margin: 5px;
+  margin-right: 20px;
+`;
+
+export const TextNumber = styled.p`
+  font-size: 16px;
+  margin: 5px;
   margin-right: 20px;
 `;
 
 export const Button = styled.button`
-  background-color: #d85e79;
+  background-color: #fdc57b;
   color: #fff;
   border: none;
   border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
   font-weight: bold;
+  box-shadow: rgba(214, 102, 214, 0.2) 0px 0px 0px 3px;
 
   &:hover {
-    background-color: #a22943;
+    background-color: #e8630a;
   }
 `;
 
