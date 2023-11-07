@@ -8,4 +8,3 @@ export const store = configureStore({
     filter: filterReducer,
   },
 });
-//state.contacts.contacts.items

@@ -10,13 +10,18 @@ export const initialState = {
     items: [],
     isLoading: false,
     error: null,
+    deletedId: null,
   },
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-
+  reducers: {
+    setDelitedId: (state, { payload }) => {
+      state.contacts.deletedId = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchDataThunk.fulfilled, (state, { payload }) => {
@@ -30,32 +35,44 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = state.contacts.items.filter(
-          contact => contact.id !== payload
+          contact => contact.id !== payload.id
         );
-      });
-    // .addMatcher(
-    //   isAnyOf(
-    //     fetchDataThunk.pending,
-    //     addContactThunk.pending,
-    //     deleteContactThunk.pending
-    //   ),
-    //   (state, { payload }) => {
-    //     state.contacts.isLoading = true;
-    //     state.contacts.error = null;
-    //   }
-    // )
-    // .addMatcher(
-    //   isAnyOf(
-    //     fetchDataThunk.rejected,
-    //     addContactThunk.rejected,
-    //     deleteContactThunk.rejected
-    //   ),
-    //   (state, { payload }) => {
-    //     state.contacts.isLoading = false;
-    //     state.contacts.error = payload;
-    //   }
-    // );
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchDataThunk.pending,
+          addContactThunk.pending,
+          deleteContactThunk.pending
+        ),
+        (state, _) => {
+          state.contacts.isLoading = true;
+          state.contacts.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchDataThunk.fulfilled,
+          addContactThunk.fulfilled,
+          deleteContactThunk.fulfilled
+        ),
+        (state, _) => {
+          state.contacts.isLoading = false;
+          state.contacts.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchDataThunk.rejected,
+          addContactThunk.rejected,
+          deleteContactThunk.rejected
+        ),
+        (state, { payload }) => {
+          state.contacts.isLoading = false;
+          state.contacts.error = payload;
+        }
+      );
   },
 });
 
 export const contactsReducer = contactsSlice.reducer;
+export const { setDelitedId } = contactsSlice.actions;
