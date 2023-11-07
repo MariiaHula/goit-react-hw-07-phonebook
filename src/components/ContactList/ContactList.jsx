@@ -13,6 +13,7 @@ const ContactList = () => {
   const filter = useSelector(state => state.filter.filter);
   const currentId = useSelector(selectCurrentID);
   const loading = useSelector(selectIsLoading);
+
   const dispatch = useDispatch();
 
   const getFilteredContact = () => {

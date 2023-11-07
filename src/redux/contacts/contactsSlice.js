@@ -8,8 +8,8 @@ import {
 export const initialState = {
   contacts: {
     items: [],
-    isLoading: false,
     error: null,
+    isLoading: false,
     deletedId: null,
   },
 };
@@ -51,17 +51,6 @@ const contactsSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchDataThunk.fulfilled,
-          addContactThunk.fulfilled,
-          deleteContactThunk.fulfilled
-        ),
-        (state, _) => {
-          state.contacts.isLoading = false;
-          state.contacts.error = null;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
           fetchDataThunk.rejected,
           addContactThunk.rejected,
           deleteContactThunk.rejected
@@ -69,6 +58,17 @@ const contactsSlice = createSlice({
         (state, { payload }) => {
           state.contacts.isLoading = false;
           state.contacts.error = payload;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchDataThunk.fulfilled,
+          addContactThunk.fulfilled,
+          deleteContactThunk.fulfilled
+        ),
+        (state, _) => {
+          state.contacts.isLoading = false;
+          state.contacts.error = null;
         }
       );
   },
