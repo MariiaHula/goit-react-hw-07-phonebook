@@ -2,10 +2,12 @@ import React from 'react';
 import { PeopleList, Item, Text, Button, TextNote } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/contactsSlice';
+
+import { deleteContactThunk } from 'redux/contacts/operations';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
+
   const filter = useSelector(state => state.filter.filter);
   const dispatch = useDispatch();
 
@@ -35,7 +37,7 @@ const ContactList = () => {
             <Text>
               {contact.name}: {contact.number}
             </Text>
-            <Button onClick={() => dispatch(deleteContact(contact.id))}>
+            <Button onClick={() => dispatch(deleteContactThunk(contact.id))}>
               Delete
             </Button>
           </Item>

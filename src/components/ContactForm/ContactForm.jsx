@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { selectContacts } from 'redux/contacts/selectors';
-import { addContact } from 'redux/contacts/contactsSlice';
+import { addContactThunk } from 'redux/contacts/operations';
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
@@ -23,9 +23,9 @@ const ContactForm = () => {
       toast.info(`${data.name} is already in your contacts.`);
       return;
     } else {
-      const { name, number } = data;
+      const { name, phone } = data;
       toast.success(`${name} added to your phonebook.`);
-      dispatch(addContact({ name, number }));
+      dispatch(addContactThunk({ name, phone }));
       reset();
     }
   };
@@ -38,7 +38,7 @@ const ContactForm = () => {
       </Label>
       <Label>
         Number
-        <Input {...register('number', { required: true })} type="tel" />
+        <Input {...register('phone', { required: true })} type="tel" />
       </Label>
       <Button type="submit">Add Contact</Button>
     </Form>

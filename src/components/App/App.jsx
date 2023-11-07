@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import Notification from '../Notification/Notification';
 import { Wrapper } from './App.styled';
 import { selectContacts } from 'redux/contacts/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataThunk } from 'redux/contacts/operations';
 
 export const App = () => {
   const contacts = useSelector(selectContacts);
+  console.log(contacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDataThunk());
+  }, [dispatch]);
 
   return (
     <>
@@ -17,11 +24,10 @@ export const App = () => {
         <ContactForm />
         <h2>Contacts List</h2>
         <Filter />
-        {contacts.length ? (
-          <ContactList />
-        ) : (
-          <Notification message="Your contact list is empty" />
-        )}
+
+        <ContactList />
+
+        <Notification message="Your contact list is empty" />
       </Wrapper>
     </>
   );
