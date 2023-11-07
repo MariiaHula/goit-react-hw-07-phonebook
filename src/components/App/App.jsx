@@ -18,13 +18,10 @@ import {
 } from 'redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataThunk } from 'redux/contacts/operations';
-import Dna from 'Loader/Dna';
-
 export const App = () => {
   const contacts = useSelector(selectContacts);
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,7 +41,7 @@ export const App = () => {
             <ContactForm />
             <SecondTitle>Contacts List</SecondTitle>
             <Filter />
-            {loading && <Dna />}
+            {loading}
             {contacts.length ? (
               <ContactList />
             ) : (
