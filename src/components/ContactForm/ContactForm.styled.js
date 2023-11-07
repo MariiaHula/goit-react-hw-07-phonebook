@@ -41,3 +41,6 @@ export const Button = styled.button`
     background-color: #27296d;
   }
 `;
+export const Text = styled.p`
+  margin-top: 5px;
+`;

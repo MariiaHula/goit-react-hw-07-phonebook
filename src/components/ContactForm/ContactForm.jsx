@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Label, Input, Button } from './ContactForm.styled';
+import { Form, Label, Input, Button, Text } from './ContactForm.styled';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -11,7 +11,12 @@ const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const submit = data => {
     const nameExists = contacts.find(
@@ -34,11 +39,19 @@ const ContactForm = () => {
     <Form onSubmit={handleSubmit(submit)}>
       <Label>
         Name
-        <Input {...register('name', { required: true })} type="text" />
+        <Input
+          {...register('name', { required: 'This is required' })}
+          type="text"
+        />
+        <Text>{errors.name?.message}</Text>
       </Label>
       <Label>
         Number
-        <Input {...register('phone', { required: true })} type="tel" />
+        <Input
+          {...register('phone', { required: 'This is required' })}
+          type="tel"
+        />
+        <Text>{errors.phone?.message}</Text>
       </Label>
       <Button type="submit">Add Contact</Button>
     </Form>

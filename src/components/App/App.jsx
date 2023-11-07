@@ -18,6 +18,7 @@ import {
 } from 'redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataThunk } from 'redux/contacts/operations';
+import { FaFaceSadTear } from 'react-icons/fa6';
 export const App = () => {
   const contacts = useSelector(selectContacts);
   const loading = useSelector(selectIsLoading);
@@ -31,9 +32,14 @@ export const App = () => {
   return (
     <>
       {error ? (
-        <CenteredTextWrapper>
-          <CenteredTextNote>{error}</CenteredTextNote>
-        </CenteredTextWrapper>
+        <Wrapper>
+          <CenteredTextWrapper>
+            <CenteredTextNote>
+              <FaFaceSadTear size={80} style={{ marginBottom: 30 }} />
+              <br></br> {error}
+            </CenteredTextNote>
+          </CenteredTextWrapper>
+        </Wrapper>
       ) : (
         <Wrapper>
           <PhoneWrapper>
