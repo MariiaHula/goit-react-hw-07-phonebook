@@ -16,21 +16,14 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   const getFilteredContact = () => {
-    if (filter) {
-      return contacts.filter(
-        contact =>
-          contact.name
-            .toLowerCase()
-            .trim()
-            .includes(filter.toLowerCase().trim()) ||
-          contact.phone
-            .toLowerCase()
-            .trim()
-            .includes(filter.toLowerCase().trim())
-      );
-    } else {
-      return contacts;
-    }
+    return contacts.filter(
+      contact =>
+        contact.name
+          .toLowerCase()
+          .trim()
+          .includes(filter.toLowerCase().trim()) ||
+        contact.phone.toLowerCase().trim().includes(filter.toLowerCase().trim())
+    );
   };
 
   return (
