@@ -7,4 +7,6 @@ export const NotificationWrapper = styled.div`
   padding: 10px;
   border-radius: 4px;
   text-align: center;
+  font-size: 20px;
+  font-weight: 500px;
 `;
