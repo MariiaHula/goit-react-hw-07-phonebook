@@ -7,11 +7,11 @@ export const ModalContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.7;
+  opacity: 0.5;
   z-index: 999;
 `;
 
@@ -19,7 +19,7 @@ export const ModalContent = styled.div`
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   background-image: url(${img});
   background-size: cover;
