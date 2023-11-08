@@ -52,7 +52,12 @@ export const App = () => {
             <TitleWrapper>
               <BsFillPhoneVibrateFill
                 size={40}
-                style={{ color: '#27296d', margin: '10 10 10 0' }}
+                style={{
+                  color: '#27296d',
+                  margin: '10 10 10 0',
+                  boxShadow: 'rgba(214, 102, 214, 0.1) 0px 0px 0px 4px',
+                  borderRadius: 20,
+                }}
               />
               <Title>Phonebook</Title>
             </TitleWrapper>
