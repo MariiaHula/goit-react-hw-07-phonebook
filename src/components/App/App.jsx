@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import Notification from '../Notification/Notification';
+
+import {
+  selectContacts,
+  selectError,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
+import { fetchDataThunk } from 'redux/contacts/operations';
+
 import {
   CenteredTextNote,
   CenteredTextWrapper,
@@ -11,14 +21,8 @@ import {
   Title,
   Wrapper,
 } from './App.styled';
-import {
-  selectContacts,
-  selectError,
-  selectIsLoading,
-} from 'redux/contacts/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataThunk } from 'redux/contacts/operations';
 import { FaFaceSadTear } from 'react-icons/fa6';
+
 export const App = () => {
   const contacts = useSelector(selectContacts);
   const loading = useSelector(selectIsLoading);

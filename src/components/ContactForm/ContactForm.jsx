@@ -1,11 +1,13 @@
 import React from 'react';
-import { Form, Label, Input, Button, Text } from './ContactForm.styled';
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useForm } from 'react-hook-form';
+
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContactThunk } from 'redux/contacts/operations';
+
+import { Form, Label, Input, Button, Text } from './ContactForm.styled';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
