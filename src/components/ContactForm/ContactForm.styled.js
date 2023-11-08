@@ -25,7 +25,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  margin: 22px 0 0 0;
+  margin: 20px 0 0 0;
   display: flex;
   align-items: center;
   padding: 5px 20px;
