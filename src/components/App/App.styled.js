@@ -36,3 +36,7 @@ export const CenteredTextWrapper = styled.div`
 export const CenteredTextNote = styled(TextNote)`
   font-size: 32px;
 `;
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;

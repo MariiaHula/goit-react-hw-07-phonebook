@@ -19,9 +19,11 @@ import {
   PhoneWrapper,
   SecondTitle,
   Title,
+  TitleWrapper,
   Wrapper,
 } from './App.styled';
 import { FaFaceSadTear } from 'react-icons/fa6';
+import { BsFillPhoneVibrateFill } from 'react-icons/bs';
 
 export const App = () => {
   const contacts = useSelector(selectContacts);
@@ -47,7 +49,13 @@ export const App = () => {
       ) : (
         <Wrapper>
           <PhoneWrapper>
-            <Title>Phonebook</Title>
+            <TitleWrapper>
+              <BsFillPhoneVibrateFill
+                size={40}
+                style={{ color: '#27296d', margin: '10 10 10 0' }}
+              />
+              <Title>Phonebook</Title>
+            </TitleWrapper>
             <ContactForm />
             <SecondTitle>Contacts List</SecondTitle>
             <Filter />
