@@ -50,9 +50,10 @@ export const Button = styled.button`
 `;
 
 export const TextNote = styled.p`
+  margin: 20px 0;
   color: navy;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
   text-shadow: #fc0 1px 0 10px;
 `;
