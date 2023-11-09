@@ -1,15 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useModal } from 'hooks/useModal';
 
-import {
-  getFilteredContact,
-  selectCurrentID,
-  selectIsLoading,
-} from 'redux/contacts/selectors';
-import {
-  deleteContactThunk,
-  updateContactThunk,
-} from 'redux/contacts/operations';
+import Modal from 'components/Modal/Modal';
+import { selectors, operations } from '../../redux/contacts';
 
 import {
   PeopleList,
@@ -24,15 +20,11 @@ import {
   ButtonWrapper,
   ButtonForm,
 } from './ContactList.styled';
-import { useModal } from 'hooks/useModal';
-import Modal from 'components/Modal/Modal';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 
 const ContactList = () => {
-  const contacts = useSelector(getFilteredContact);
-  const currentId = useSelector(selectCurrentID);
-  const loading = useSelector(selectIsLoading);
+  const contacts = useSelector(selectors.selectFilteredContact);
+  const currentId = useSelector(selectors.selectIsLoading);
+  const loading = useSelector(selectors.selectCurrentID);
   const dispatch = useDispatch();
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -40,7 +32,6 @@ const ContactList = () => {
   const { handleSubmit, register, setValue } = useForm();
 
   const submitEdit = data => {
-    
     if (editingContact) {
       const updatedContact = {
         id: editingContact.id,
@@ -48,7 +39,7 @@ const ContactList = () => {
         phone: data.phone,
       };
 
-      dispatch(updateContactThunk(updatedContact));
+      dispatch(operations.updateContactThunk(updatedContact));
       closeModal();
     }
   };
@@ -90,7 +81,11 @@ const ContactList = () => {
             {loading && currentId === contact.id ? (
               <Button>Deleting...</Button>
             ) : (
-              <Button onClick={() => dispatch(deleteContactThunk(contact.id))}>
+              <Button
+                onClick={() =>
+                  dispatch(operations.deleteContactThunk(contact.id))
+                }
+              >
                 Delete
               </Button>
             )}

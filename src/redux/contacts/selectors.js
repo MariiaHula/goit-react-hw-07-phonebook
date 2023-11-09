@@ -6,7 +6,7 @@ export const selectError = state => state.contactList.contacts.error;
 export const selectCurrentID = state => state.contactList.contacts.deletedId;
 export const selectFilter = state => state.filter.filter;
 
-export const getFilteredContact = createSelector(
+export const selectFilteredContact = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
     return contacts.filter(

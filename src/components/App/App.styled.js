@@ -1,6 +1,7 @@
 import { TextNote } from 'components/ContactList/ContactList.styled';
 import styled from 'styled-components';
 import img from '../../images/5589241.jpg';
+import { BsFillPhoneVibrateFill } from 'react-icons/bs';
 
 export const Wrapper = styled.div`
   background-image: url(${img});
@@ -39,4 +40,11 @@ export const CenteredTextNote = styled(TextNote)`
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
+`;
+export const BsFillPhoneIcon = styled(BsFillPhoneVibrateFill)`
+  font-size: 40px;
+  color: #27296d;
+  margin: 10px 10px 10px 0;
+  box-shadow: rgba(214, 102, 214, 0.1) 0px 0px 0px 4px;
+  border-radius: 20%;
 `;

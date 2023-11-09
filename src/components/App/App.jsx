@@ -6,14 +6,10 @@ import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import Notification from '../Notification/Notification';
 
-import {
-  selectContacts,
-  selectError,
-  selectIsLoading,
-} from 'redux/contacts/selectors';
-import { fetchDataThunk } from 'redux/contacts/operations';
+import { selectors, operations } from '../../redux/contacts';
 
 import {
+  BsFillPhoneIcon,
   CenteredTextNote,
   CenteredTextWrapper,
   PhoneWrapper,
@@ -23,16 +19,15 @@ import {
   Wrapper,
 } from './App.styled';
 import { FaFaceSadTear } from 'react-icons/fa6';
-import { BsFillPhoneVibrateFill } from 'react-icons/bs';
 
 export const App = () => {
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const contacts = useSelector(selectors.selectContacts);
+  const loading = useSelector(selectors.selectIsLoading);
+  const error = useSelector(selectors.selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDataThunk());
+    dispatch(operations.fetchDataThunk());
   }, [dispatch]);
 
   return (
@@ -50,15 +45,7 @@ export const App = () => {
         <Wrapper>
           <PhoneWrapper>
             <TitleWrapper>
-              <BsFillPhoneVibrateFill
-                size={40}
-                style={{
-                  color: '#27296d',
-                  margin: '10 10 10 0',
-                  boxShadow: 'rgba(214, 102, 214, 0.1) 0px 0px 0px 4px',
-                  borderRadius: 20,
-                }}
-              />
+              <BsFillPhoneIcon />
               <Title>Phonebook</Title>
             </TitleWrapper>
             <ContactForm />
