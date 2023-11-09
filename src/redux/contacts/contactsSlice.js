@@ -50,7 +50,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchDataThunk.pending,
           addContactThunk.pending,
-          deleteContactThunk.pending
+          deleteContactThunk.pending,
+          updateContactThunk.pending
         ),
         (state, _) => {
           state.contacts.isLoading = true;
@@ -61,7 +62,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchDataThunk.rejected,
           addContactThunk.rejected,
-          deleteContactThunk.rejected
+          deleteContactThunk.rejected,
+          updateContactThunk.rejected
         ),
         (state, { payload }) => {
           state.contacts.isLoading = false;
@@ -72,7 +74,8 @@ const contactsSlice = createSlice({
         isAnyOf(
           fetchDataThunk.fulfilled,
           addContactThunk.fulfilled,
-          deleteContactThunk.fulfilled
+          deleteContactThunk.fulfilled,
+          updateContactThunk.fulfilled
         ),
         (state, _) => {
           state.contacts.isLoading = false;

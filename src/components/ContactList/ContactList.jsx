@@ -40,6 +40,7 @@ const ContactList = () => {
   const { handleSubmit, register, setValue } = useForm();
 
   const submitEdit = data => {
+    
     if (editingContact) {
       const updatedContact = {
         id: editingContact.id,
