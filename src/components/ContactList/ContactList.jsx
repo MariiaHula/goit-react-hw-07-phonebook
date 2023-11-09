@@ -23,8 +23,8 @@ import {
 
 const ContactList = () => {
   const contacts = useSelector(selectors.selectFilteredContact);
-  const currentId = useSelector(selectors.selectIsLoading);
-  const loading = useSelector(selectors.selectCurrentID);
+  const currentId = useSelector(selectors.selectCurrentID);
+  const loading = useSelector(selectors.selectIsLoading);
   const dispatch = useDispatch();
 
   const { isOpen, openModal, closeModal } = useModal();
