@@ -51,10 +51,8 @@ export const App = () => {
             <ContactForm />
             <SecondTitle>Contacts List</SecondTitle>
             <Filter />
-            {loading}
-            {contacts.length ? (
-              <ContactList />
-            ) : (
+            {contacts.length > 0 && <ContactList />}
+            {contacts.length === 0 && !loading && (
               <Notification message="Your contact list is empty" />
             )}
           </PhoneWrapper>
