@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useModal } from 'hooks/useModal';
 
@@ -14,12 +13,8 @@ import {
   TextNote,
   TextName,
   TextNumber,
-  FormContainer,
-  Label,
-  Input,
-  ButtonWrapper,
-  ButtonForm,
 } from './ContactList.styled';
+import { EditForm } from 'EditForm/EditForm';
 
 const ContactList = () => {
   const contacts = useSelector(selectors.selectFilteredContact);
@@ -29,25 +24,10 @@ const ContactList = () => {
 
   const { isOpen, openModal, closeModal } = useModal();
   const [editingContact, setEditingContact] = useState(null);
-  const { handleSubmit, register, setValue } = useForm();
 
-  const submitEdit = data => {
-    if (editingContact) {
-      const updatedContact = {
-        id: editingContact.id,
-        name: data.name,
-        phone: data.phone,
-      };
-
-      dispatch(operations.updateContactThunk(updatedContact));
-      closeModal();
-    }
-  };
   const openEditModal = contact => {
     setEditingContact(contact);
     openModal();
-    setValue('name', contact.name);
-    setValue('phone', contact.phone);
   };
 
   return (
@@ -79,22 +59,7 @@ const ContactList = () => {
       </PeopleList>
       {isOpen ? (
         <Modal>
-          <FormContainer onSubmit={handleSubmit(submitEdit)}>
-            <Label>
-              Name
-              <Input {...register('name')} type="text" />
-            </Label>
-            <Label>
-              Number
-              <Input {...register('phone')} type="tel" />
-            </Label>
-            <ButtonWrapper>
-              <ButtonForm onClick={closeModal} type="button">
-                Cancel
-              </ButtonForm>
-              <ButtonForm type="submit">Update</ButtonForm>
-            </ButtonWrapper>
-          </FormContainer>
+          <EditForm closeModal={closeModal} contact={editingContact} />
         </Modal>
       ) : null}
     </>
