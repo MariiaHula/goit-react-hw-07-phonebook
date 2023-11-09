@@ -51,50 +51,53 @@ const ContactList = () => {
   };
 
   return (
-    <PeopleList>
-      {contacts.length ? (
-        contacts.map(contact => (
-          <Item key={contact.id}>
-            <TextName>{contact.name}</TextName>
-            <TextNumber>{contact.phone}</TextNumber>
-            <Button onClick={() => openEditModal(contact)}>Edit</Button>
-            {isOpen ? (
-              <Modal>
-                <FormContainer onSubmit={handleSubmit(submitEdit)}>
-                  <Label>
-                    Name
-                    <Input {...register('name')} type="text" />
-                  </Label>
-                  <Label>
-                    Number
-                    <Input {...register('phone')} type="tel" />
-                  </Label>
-                  <ButtonWrapper>
-                    <ButtonForm onClick={closeModal} type="button">
-                      Cancel
-                    </ButtonForm>
-                    <ButtonForm type="submit">Update</ButtonForm>
-                  </ButtonWrapper>
-                </FormContainer>
-              </Modal>
-            ) : null}
-            {loading && currentId === contact.id ? (
-              <Button>Deleting...</Button>
-            ) : (
-              <Button
-                onClick={() =>
-                  dispatch(operations.deleteContactThunk(contact.id))
-                }
-              >
-                Delete
-              </Button>
-            )}
-          </Item>
-        ))
-      ) : (
-        <TextNote>Unfortunately, there are no matches</TextNote>
-      )}
-    </PeopleList>
+    <>
+      <PeopleList>
+        {contacts.length ? (
+          contacts.map(contact => (
+            <Item key={contact.id}>
+              <TextName>{contact.name}</TextName>
+              <TextNumber>{contact.phone}</TextNumber>
+              <Button onClick={() => openEditModal(contact)}>Edit</Button>
+
+              {loading && currentId === contact.id ? (
+                <Button>Deleting...</Button>
+              ) : (
+                <Button
+                  onClick={() =>
+                    dispatch(operations.deleteContactThunk(contact.id))
+                  }
+                >
+                  Delete
+                </Button>
+              )}
+            </Item>
+          ))
+        ) : (
+          <TextNote>Unfortunately, there are no matches</TextNote>
+        )}
+      </PeopleList>
+      {isOpen ? (
+        <Modal>
+          <FormContainer onSubmit={handleSubmit(submitEdit)}>
+            <Label>
+              Name
+              <Input {...register('name')} type="text" />
+            </Label>
+            <Label>
+              Number
+              <Input {...register('phone')} type="tel" />
+            </Label>
+            <ButtonWrapper>
+              <ButtonForm onClick={closeModal} type="button">
+                Cancel
+              </ButtonForm>
+              <ButtonForm type="submit">Update</ButtonForm>
+            </ButtonWrapper>
+          </FormContainer>
+        </Modal>
+      ) : null}
+    </>
   );
 };
 
