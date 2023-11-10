@@ -2,14 +2,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import { selectors, operations } from '../../redux/contacts';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContactThunk } from 'redux/contacts/operations';
 
 import { Form, Label, Input, Button, Text } from './ContactForm.styled';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
-  const contacts = useSelector(selectors.selectContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const {
@@ -31,7 +32,7 @@ const ContactForm = () => {
     } else {
       const { name, phone } = data;
       toast.success(`${name} added to your phonebook.`);
-      dispatch(operations.addContactThunk({ name, phone }));
+      dispatch(addContactThunk({ name, phone }));
       reset();
     }
   };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { operations } from 'redux/contacts';
 import {
   ButtonForm,
   ButtonWrapper,
@@ -9,6 +8,7 @@ import {
   Input,
   Label,
 } from './EditForm.styled';
+import { updateContactThunk } from 'redux/contacts/operations';
 
 export const EditForm = ({ closeModal, contact }) => {
   const { handleSubmit, register } = useForm({
@@ -24,7 +24,7 @@ export const EditForm = ({ closeModal, contact }) => {
         phone: data.phone,
       };
 
-      dispatch(operations.updateContactThunk(updatedContact));
+      dispatch(updateContactThunk(updatedContact));
       closeModal();
     }
   };

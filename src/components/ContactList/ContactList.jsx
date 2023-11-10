@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { useModal } from 'hooks/useModal';
 
 import Modal from 'components/Modal/Modal';
-import { selectors, operations } from '../../redux/contacts';
+
+import {
+  selectCurrentID,
+  selectFilteredContact,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
+import { deleteContactThunk } from 'redux/contacts/operations';
 
 import {
   PeopleList,
@@ -17,9 +23,9 @@ import {
 import { EditForm } from 'EditForm/EditForm';
 
 const ContactList = () => {
-  const contacts = useSelector(selectors.selectFilteredContact);
-  const currentId = useSelector(selectors.selectCurrentID);
-  const loading = useSelector(selectors.selectIsLoading);
+  const contacts = useSelector(selectFilteredContact);
+  const currentId = useSelector(selectCurrentID);
+  const loading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -44,9 +50,7 @@ const ContactList = () => {
                 <Button>Deleting...</Button>
               ) : (
                 <Button
-                  onClick={() =>
-                    dispatch(operations.deleteContactThunk(contact.id))
-                  }
+                  onClick={() => dispatch(deleteContactThunk(contact.id))}
                 >
                   Delete
                 </Button>

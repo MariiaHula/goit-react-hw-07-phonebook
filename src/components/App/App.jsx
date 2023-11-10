@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaFaceSadTear } from 'react-icons/fa6';
 
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 import Notification from '../Notification/Notification';
 
-import { selectors, operations } from '../../redux/contacts';
+import { fetchDataThunk } from 'redux/contacts/operations';
+import {
+  selectContacts,
+  selectError,
+  selectIsLoading,
+} from 'redux/contacts/selectors';
 
 import {
   BsFillPhoneIcon,
@@ -18,16 +24,15 @@ import {
   TitleWrapper,
   Wrapper,
 } from './App.styled';
-import { FaFaceSadTear } from 'react-icons/fa6';
 
 export const App = () => {
-  const contacts = useSelector(selectors.selectContacts);
-  const loading = useSelector(selectors.selectIsLoading);
-  const error = useSelector(selectors.selectError);
+  const contacts = useSelector(selectContacts);
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(operations.fetchDataThunk());
+    dispatch(fetchDataThunk());
   }, [dispatch]);
 
   return (
